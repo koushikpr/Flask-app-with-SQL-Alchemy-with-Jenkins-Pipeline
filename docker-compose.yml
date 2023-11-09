@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  # Flask Application
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL='sqlite:5432///movie_database.db' # Replace with your actual database connection details
+
+  # PostgreSQL Database
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ubuntu
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: movie_database # Replace with your actual database name
+    ports:
+      - "5432:5432"
