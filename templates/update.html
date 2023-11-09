@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Update Form</title>
+</head>
+<body>
+
+    <h2>Update Movie</h2>
+
+    <form id="movieForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="year_of_release">Year of Release:</label>
+        <input type="number" id="year_of_release" name="year_of_release" required><br>
+
+        <label for="user_ratings">User Ratings:</label>
+        <input type="number" id="user_ratings" name="user_ratings" step="0.1"><br>
+
+        <label for="genres">Genres:</label>
+        <input type="text" id="genres" name="genres" placeholder="Comma-separated genre IDs"><br>
+
+        <label for="actors">Actors:</label>
+        <input type="text" id="actors" name="actors" placeholder="Comma-separated actor IDs"><br>
+
+        <label for="technicians">Technicians:</label>
+        <input type="text" id="technicians" name="technicians" placeholder="Comma-separated technician IDs"><br>
+
+        <button type="button" onclick="updateMovie()">Update Movie</button>
+    </form>
+
+    <script>
+        function updateMovie() {
+            var form = document.getElementById('movieForm');
+            var formData = new FormData(form);
+
+            var movieId = /* replace with the movie ID you want to update */
+            fetch('/movies/' + movieId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(Object.fromEntries(formData)),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
