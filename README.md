@@ -5,6 +5,7 @@ This is a simple Flask application that uses FLASK SQL Alchemy to create a Relat
 To run the program on your local machine. Run 
 
 ```
+pip install -r requirements.txt
 python app.py
 ```
 
@@ -28,6 +29,7 @@ docker-compose up
 2. Hosting on AWS EC2 
 To host on EC2 there are 2 configurations to be done. Clone the repo on the EC2 Instance and replace the app.run(debug=True) with app.run(debug=True, host='0.0.0.0'). This will enable it for production environment. then run 
 ```
+pip install -r requirements.txt
 python app.py
 ```
 And go to http://{your_public_ip}:5000 to find your hosted app on AWS EC2 Instance
